@@ -57,7 +57,7 @@ fun HomeScreen(
     onCalculatorClick: () -> Unit,
     onProfileClick: () -> Unit
 ) {
-    val income = 50000.00
+    val income = 10000.00
     val totalExpense = expenses.sumOf {it.amount}
     var expenseToDelete by remember { mutableStateOf<Expense?>(null) }
 
