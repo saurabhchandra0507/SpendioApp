@@ -72,7 +72,8 @@ fun CalculatorScreen(
                 }
             )
         }
-    ) { innerPadding ->
+    )
+    { innerPadding ->
 
         Column(
             modifier = Modifier
