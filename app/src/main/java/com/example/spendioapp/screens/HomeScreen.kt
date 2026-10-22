@@ -291,7 +291,7 @@ fun HomeScreen(
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color(0xFF757575),
-                    modifier = Modifier.padding(start = 80.dp, top = 100.dp)
+                    modifier = Modifier.padding(start = 80.dp, top = 110.dp)
                 )
             }
             expenses.forEach { expenseItem ->
