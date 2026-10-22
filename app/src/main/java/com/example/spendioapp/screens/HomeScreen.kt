@@ -285,6 +285,15 @@ fun HomeScreen(
 
                 )
             )
+            if (expenses.isEmpty()) {
+                Text(
+                    text = "No expenses yet. Tap + to add one.",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF757575),
+                    modifier = Modifier.padding(start = 80.dp, top = 100.dp)
+                )
+            }
             expenses.forEach { expenseItem ->
 
                 Card(
