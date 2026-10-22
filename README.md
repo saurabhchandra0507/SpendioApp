@@ -35,3 +35,5 @@ A simple expense tracker for Android, built with Jetpack Compose and Room.
 ```bash
 ./gradlew testDebugUnitTest
 ```
+
+Thank You
