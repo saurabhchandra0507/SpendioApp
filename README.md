@@ -10,6 +10,13 @@ A simple expense tracker for Android, built with Jetpack Compose and Room.
 - EMI calculator for loan payments
 - Profile screen
 
+## Screenshot
+<img width="275" height="600" alt="Screenshot 2026-10-25 at 8 20 46 PM" src="https://github.com/user-attachments/assets/607c6729-7a11-4257-9f5b-2357dd7068e3" />
+<img width="279" height="602" alt="Screenshot 2026-10-25 at 8 22 02 PM" src="https://github.com/user-attachments/assets/7effe95c-8fea-40ce-bcd2-f3fe0e4c4ee1" />
+<img width="279" height="602" alt="Screenshot 2026-10-25 at 8 23 31 PM" src="https://github.com/user-attachments/assets/df8e3e2c-e012-42c0-b3bf-48728c2e4960" />
+
+
+
 ## Tech Stack
 
 - Kotlin
