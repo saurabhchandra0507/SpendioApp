@@ -10,8 +10,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Calculate
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Card
@@ -44,7 +46,9 @@ import androidx.compose.material.icons.filled.DeleteForever
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.TextButton
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.navigation.compose.rememberNavController
 
 
@@ -57,9 +61,11 @@ fun HomeScreen(
     onCalculatorClick: () -> Unit,
     onProfileClick: () -> Unit
 ) {
-    val income = 50000.00
+    var income by remember { mutableStateOf(50000.00) }
     val totalExpense = expenses.sumOf {it.amount}
     var expenseToDelete by remember { mutableStateOf<Expense?>(null) }
+    var showEditIncomeDialog by remember { mutableStateOf(false) }
+    var incomeInput by remember { mutableStateOf("") }
 
     val balance = income - totalExpense
 
@@ -242,12 +248,34 @@ fun HomeScreen(
                                 modifier = Modifier.height(7.dp)
                             )
 
-                            Text(
-                                text = "₹%.2f".format(income),
-                                fontSize = 20.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = Color.White
-                            )
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+
+                                Text(
+                                    text = "₹%.2f".format(income),
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.White
+                                )
+
+                                IconButton(
+                                    onClick = {
+                                        incomeInput = income.toString()
+                                        showEditIncomeDialog = true
+                                    },
+                                    modifier = Modifier
+                                        .padding(start = 2.dp)
+                                        .size(20.dp)
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.Edit,
+                                        contentDescription = "Edit income",
+                                        tint = Color.White,
+                                        modifier = Modifier.size(16.dp)
+                                    )
+                                }
+                            }
                         }
 
                         Column(
@@ -413,7 +441,53 @@ fun HomeScreen(
                 )
             }
 
-
+            if (showEditIncomeDialog) {
+                AlertDialog(
+                    onDismissRequest = {
+                        showEditIncomeDialog = false
+                    },
+                    title = {
+                        Text("Edit Income")
+                    },
+                    text = {
+                        OutlinedTextField(
+                            value = incomeInput,
+                            onValueChange = {
+                                incomeInput = it
+                            },
+                            label = {
+                                Text("Income")
+                            },
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Number
+                            )
+                        )
+                    },
+                    confirmButton = {
+                        TextButton(
+                            onClick = {
+                                incomeInput.toDoubleOrNull()?.let {
+                                    income = it
+                                }
+                                showEditIncomeDialog = false
+                            }
+                        )
+                        {
+                            Text("Save")
+                        }
+                    },
+                    dismissButton = {
+                        TextButton(
+                            onClick = {
+                                showEditIncomeDialog = false
+                            }
+                        )
+                        {
+                            Text("Cancel")
+                        }
+                    }
+                )
+            }
 
         }
     }

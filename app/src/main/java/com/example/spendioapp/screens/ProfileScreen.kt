@@ -17,8 +17,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Logout
+import androidx.compose.material.icons.automirrored.filled.Help
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
@@ -30,14 +31,9 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -50,8 +46,6 @@ import androidx.compose.ui.unit.sp
 fun ProfileScreen(
     onBackClick: () -> Unit
 ) {
-    var notificationsEnabled by remember { mutableStateOf(true) }
-
     Scaffold(
         topBar = {
             TopAppBar(
@@ -185,7 +179,7 @@ fun ProfileScreen(
                 modifier = Modifier.height(30.dp)
             )
 
-            // Notifications / Settings
+            // Settings
 
             Text(
                 text = "Preferences",
@@ -209,24 +203,17 @@ fun ProfileScreen(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Icon(
-                            imageVector = Icons.Default.Notifications,
-                            contentDescription = "Notifications",
+                            imageVector = Icons.Default.Settings,
+                            contentDescription = "Settings",
                             tint = Color(0xFFFF9800)
                         )
                         Spacer(
                             modifier = Modifier.width(16.dp)
                         )
                         Text(
-                            text = "Notifications",
+                            text = "Settings",
                             fontSize = 16.sp,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.weight(1f)
-                        )
-                        Switch(
-                            checked = notificationsEnabled,
-                            onCheckedChange = {
-                                notificationsEnabled = it
-                            }
+                            fontWeight = FontWeight.Bold
                         )
                     }
 
@@ -239,15 +226,38 @@ fun ProfileScreen(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Icon(
-                            imageVector = Icons.Default.Settings,
-                            contentDescription = "Settings",
+                            imageVector = Icons.Default.Lock,
+                            contentDescription = "Privacy Policy",
                             tint = Color(0xFFFF9800)
                         )
                         Spacer(
                             modifier = Modifier.width(16.dp)
                         )
                         Text(
-                            text = "Settings",
+                            text = "Privacy Policy",
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+
+                    HorizontalDivider()
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.Help,
+                            contentDescription = "Help & Support",
+                            tint = Color(0xFFFF9800)
+                        )
+                        Spacer(
+                            modifier = Modifier.width(16.dp)
+                        )
+                        Text(
+                            text = "Help & Support",
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold
                         )
